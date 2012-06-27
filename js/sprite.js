@@ -1,20 +1,13 @@
 //Sprite
 ;(function(){
-	var Sprite = function(obj){
-		this.init(obj);
+	var Sprite = function(customConf,draw){
+		this.init(customConf,draw);
 	};
 	
 	Sprite.prototype = {
-			_type : 'sprite',			
-			conf : {
-				subtype : 'shape',
-				x : 0,
-				y : 0,
-				xscale : 1,
-				yscale : 1,
-				rotation : 0,
-				points : [],
-				lines : [],
+		type : 'sprite',			
+		init : function(customConf,draw){
+			this.conf = {				
 				style : {
 					fillStyle: '#AAA',
 					font: '10px sans-serif',
@@ -31,14 +24,13 @@
 					shadowOffsetX: 0,
 					shadowOffsetY: 0,
 					strokeStyle: '#000'
-				},
-			},
-			_visible : true,
-			
-			init : function(obj){
-				this.conf = extend(this.conf,obj);
-			}
-		
+				}
+			};
+			this.conf = extendObject(this.conf,customConf);
+			this.visible = true;
+			this.draw = draw;
+		}
+		//End Sprite
 	};	
 	
 	//Shortcut
