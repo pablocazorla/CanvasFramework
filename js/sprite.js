@@ -1,12 +1,12 @@
 //Sprite
 ;(function(){
-	var Sprite = function(customConf,draw){
-		this.init(customConf,draw);
+	var Sprite = function(draw,customConf){
+		this.init(draw,customConf);
 	};
 	
 	Sprite.prototype = {
 		type : 'sprite',			
-		init : function(customConf,draw){
+		init : function(draw,customConf){
 			this.conf = {				
 				style : {
 					fillStyle: '#AAA',
@@ -26,9 +26,9 @@
 					strokeStyle: '#000'
 				}
 			};
-			this.conf = extendObject(this.conf,customConf);
 			this.visible = true;
-			this.draw = draw;
+			if(customConf) this.conf = extendObject(this.conf,customConf);			
+			if(draw) this.draw = draw;
 		}
 		//End Sprite
 	};	

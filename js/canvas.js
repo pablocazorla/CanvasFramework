@@ -62,19 +62,36 @@
 			}else{
 				return this.createLayer()
 			}
-		},
-		
+		},		
 		
 		clear : function(){
 			this.c.clearRect(0,0,this.canvas.width,this.canvas.height);			
 			return this;
+		},
+		render : function(){
+			// Revert to the default coordinate system
+			this.c.setTransform(1,0,0,1,0,0);
+			this.clear();
+			for(var i = 0;i < this.length;i++){
+				var layer = this.layers[i];
+				if(layer.visible){
+					
+					this.c.translate(layer.x,layer.y);
+					this.c.scale(layer.xscale,layer.yscale);
+					this.c.rotate(layer.rotation*Math.PI/180);
+					
+					for(var ie = 0; ie < layer.length;ie++){
+						var sprite = layer.sprites[ie];
+						this.c.save();
+						for(var a in sprite.conf.style){
+							this.c[a] = sprite.conf.style[a];							
+						};
+						sprite.draw(this.c);						
+						this.c.restore();
+					}					
+				}
+			}			
 		}		
-		
-		
-		
-		
-		
-		
 		
 		//End Canvas
 	};	
@@ -83,4 +100,5 @@
 	if(!window.Canvas){
 		window.Canvas = Canvas;
 	};	
+	
 })();
