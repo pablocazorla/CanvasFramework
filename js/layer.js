@@ -23,6 +23,7 @@
 			this.rotation = 0;
 			this.sprites = [];
 			this.length = 0;
+			this.animation = false;
 		},			
 		
 		show : function(){
@@ -65,7 +66,15 @@
 				return this;
 			}
 			return this;
-		}		
+		},
+		animate : function(animation){
+			this.animation = animation;
+			return this;
+		},
+		stopAnimate : function(){
+			this.animation = false;
+			return this;
+		}	
 		//End Layer
 	};	
 	

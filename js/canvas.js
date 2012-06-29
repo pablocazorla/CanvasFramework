@@ -68,13 +68,15 @@
 			this.c.clearRect(0,0,this.canvas.width,this.canvas.height);			
 			return this;
 		},
-		render : function(){
+		rendering : function(){
 			// Revert to the default coordinate system
 			this.c.setTransform(1,0,0,1,0,0);
 			this.clear();
 			for(var i = 0;i < this.length;i++){
 				var layer = this.layers[i];
 				if(layer.visible){
+					
+					if(layer.animation){layer.animation();}
 					
 					this.c.translate(layer.x,layer.y);
 					this.c.scale(layer.xscale,layer.yscale);
@@ -91,6 +93,11 @@
 					}					
 				}
 			}			
+		},
+		render : function(){
+			var obj = this;
+			var timer = setInterval(function(){obj.rendering();},20);
+			return this;
 		}		
 		
 		//End Canvas
