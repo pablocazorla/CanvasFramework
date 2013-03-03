@@ -1,0 +1,18 @@
+body{
+	background: #EEE;
+	overflow-y: scroll;
+}
+.page{
+	background: #FFF;
+	width: 900px;
+	padding:30px;
+	margin: 20px auto;
+	border: solid 1px #DDD;
+	min-height: 1000px;
+}
+
+canvas{
+	border: solid 1px #DDD;
+	display:block;
+	margin: 0 auto;
+}
